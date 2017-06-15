@@ -6,6 +6,8 @@ set -e
 source ./env/env.sh
 unset AWS_SESSION_TOKEN
 
+pip install --user awscli
+
 if [ "$LAMBCI_BRANCH" = "master" ]; then
   export STAGE=prod
   EXPLORER_STAGE=prodgreen
