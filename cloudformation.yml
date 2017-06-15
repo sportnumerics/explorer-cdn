@@ -26,7 +26,7 @@ Mappings:
       - "*.sportnumerics.com"
       # - sportnumerics.com
       # - www.sportnumerics.com
-      # - prod.sportnumerics.com
+      - prod.sportnumerics.com
       certificate: arn:aws:acm:us-east-1:265978616089:certificate/7140c26c-5b35-4f21-b16d-695bf5a659e6
 Resources:
   CloudfrontDistribution:
