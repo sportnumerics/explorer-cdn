@@ -89,6 +89,32 @@ Resources:
           - - Ref: StageParameter
             - sportnumerics.com
       Type: A
+  TopLevelDomain:
+    Type: AWS::Route53::RecordSet
+    Condition: ProdCondition
+    Properties:
+      AliasTarget:
+        DNSName:
+          Fn::GetAtt:
+            - CloudfrontDistribution
+            - DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      HostedZoneName: sportnumerics.com.
+      Name: sportnumerics.com
+      Type: A
+  WWWDomain:
+    Type: AWS::Route53::RecordSet
+    Condition: ProdCondition
+    Properties:
+      AliasTarget:
+        DNSName:
+          Fn::GetAtt:
+            - CloudfrontDistribution
+            - DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      HostedZoneName: sportnumerics.com.
+      Name: www.sportnumerics.com
+      Type: A
 Outputs:
   CloudfrontArn:
     Description: Cloudfront distribution for sportnumerics frontend
