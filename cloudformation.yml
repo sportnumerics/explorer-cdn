@@ -73,7 +73,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       AliasTarget:
-        DnsName:
+        DNSName:
           Fn::GetAtt:
             - CloudfrontDistribution
             - DomainName
