@@ -69,6 +69,16 @@ Resources:
               - Ref: StageParameter
               - certificate
           SslSupportMethod: sni-only
+  ProdDomain:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        Fn::GetAtt:
+          - CloudfrontDistribution
+          - DomainName
+      HostedZoneName: sportnumerics.com
+      Name: prod.sportnumerics.com
+      Type: A
 Outputs:
   CloudfrontArn:
     Description: Cloudfront distribution for sportnumerics frontend
