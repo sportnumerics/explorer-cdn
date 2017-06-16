@@ -83,7 +83,7 @@ Resources:
             - CloudfrontDistribution
             - DomainName
         HostedZoneId: Z2FDTNDATAQYW2
-      HostedZoneName: sportnumerics.com.
+      HostedZoneId: Z3R2RGFTVSSJXN
       Name:
         Fn::Join:
           - '.'
