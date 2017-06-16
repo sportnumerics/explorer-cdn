@@ -73,9 +73,11 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       AliasTarget:
-        Fn::GetAtt:
-          - CloudfrontDistribution
-          - DomainName
+        DnsName:
+          Fn::GetAtt:
+            - CloudfrontDistribution
+            - DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
       HostedZoneName: sportnumerics.com
       Name: prod.sportnumerics.com
       Type: A
