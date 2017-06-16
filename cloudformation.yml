@@ -28,6 +28,11 @@ Mappings:
       # - www.sportnumerics.com
       - prod.sportnumerics.com
       certificate: arn:aws:acm:us-east-1:265978616089:certificate/7140c26c-5b35-4f21-b16d-695bf5a659e6
+Conditions:
+  ProdCondition:
+    Fn::Equals:
+      - Ref: StageParameter
+      - prod
 Resources:
   CloudfrontDistribution:
     Type: AWS::CloudFront::Distribution
@@ -69,7 +74,7 @@ Resources:
               - Ref: StageParameter
               - certificate
           SslSupportMethod: sni-only
-  ProdDomain:
+  PrimaryDomain:
     Type: AWS::Route53::RecordSet
     Properties:
       AliasTarget:
@@ -78,8 +83,12 @@ Resources:
             - CloudfrontDistribution
             - DomainName
         HostedZoneId: Z2FDTNDATAQYW2
-      HostedZoneName: sportnumerics.com
-      Name: prod.sportnumerics.com
+      HostedZoneName: sportnumerics.com.
+      Name:
+        Fn::Join:
+          - '.'
+          - - Ref: StageParameter
+          - sportnumerics.com
       Type: A
 Outputs:
   CloudfrontArn:
