@@ -16,7 +16,7 @@ else
   EXPLORER_STAGE=dev
 fi
 
-REGION="ap-southeast-2"
+REGION="us-east-1"
 APP_NAME="sportnumerics-explorer-cdn"
 STACK_NAME="$APP_NAME-$STAGE"
 TEMPLATE_FILE="cloudformation.yml"

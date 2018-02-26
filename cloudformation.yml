@@ -7,6 +7,7 @@ Parameters:
     AllowedValues:
     - dev
     - prod
+    - us-east-1
     Description: Stage to deploy
   ExplorerStageDeployment:
     Type: String
@@ -27,6 +28,10 @@ Mappings:
       - www.sportnumerics.com
       - prod.sportnumerics.com
       certificate: arn:aws:acm:us-east-1:265978616089:certificate/7140c26c-5b35-4f21-b16d-695bf5a659e6
+    us-east-1:
+      aliases:
+      - us-east-1.sportnumerics.com
+      certificate: arn:aws:acm:us-east-1:265978616089:certificate/2eabf979-117c-4223-bcae-69d618b51a60
 Conditions:
   ProdCondition:
     Fn::Equals:
