@@ -30,7 +30,7 @@ Mappings:
       certificate: arn:aws:acm:us-east-1:265978616089:certificate/7140c26c-5b35-4f21-b16d-695bf5a659e6
     us-east-1:
       aliases:
-      - us-east-1.sportnumerics.com
+      - '*.sportnumerics.com'
       certificate: arn:aws:acm:us-east-1:265978616089:certificate/7140c26c-5b35-4f21-b16d-695bf5a659e6
 Conditions:
   ProdCondition:
