@@ -10,7 +10,7 @@ pip install --user awscli
 
 if [ "$LAMBCI_BRANCH" = "master" ]; then
   export STAGE=prod
-  EXPLORER_STAGE=prodgreen
+  EXPLORER_STAGE=prodblue
 else
   export STAGE=dev
   EXPLORER_STAGE=dev
@@ -23,7 +23,7 @@ TEMPLATE_FILE="cloudformation.yml"
 
 aws configure set region $REGION
 
-aws cloudformation deploy --stack-name $STACK_NAME --parameter-overrides "StageParameter=$STAGE" "ExplorerStageDeployment=$EXPLORER_STAGE" --template-file $TEMPLATE_FILE || true
+aws cloudformation deploy --stack-name $STACK_NAME --parameter-overrides "StageParameter=us-east-1" "ExplorerStageDeployment=$EXPLORER_STAGE" --template-file $TEMPLATE_FILE || true
 
 CLOUDFRONT_ID=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[0].Outputs[?OutputKey==`CloudfrontArn`].OutputValue' --output text)
 
