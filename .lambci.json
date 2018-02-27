@@ -2,6 +2,7 @@
   "cmd": "./deploy.sh",
   "branches": {
     "master": true,
-    "dev": true
+    "dev": true,
+    "us-east-1": true
   }
 }

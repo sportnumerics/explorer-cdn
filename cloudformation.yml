@@ -107,6 +107,9 @@ Resources:
       HostedZoneName: sportnumerics.com.
       Name: sportnumerics.com
       Type: A
+      SetIdentifier:
+        Ref: StageParameter
+      Weight: 1
   WWWDomain:
     Type: AWS::Route53::RecordSet
     Condition: ProdCondition
@@ -120,6 +123,9 @@ Resources:
       HostedZoneName: sportnumerics.com.
       Name: www.sportnumerics.com
       Type: A
+      SetIdentifier:
+        Ref: StageParameter
+      Weight: 1
 Outputs:
   CloudfrontArn:
     Description: Cloudfront distribution for sportnumerics frontend

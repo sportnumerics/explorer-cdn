@@ -10,20 +10,23 @@ pip install --user awscli
 
 if [ "$LAMBCI_BRANCH" = "master" ]; then
   export STAGE=prod
+  EXPLORER_STAGE=prodgreen
+elif [ "$LAMBCI_BRANCH" = "us-east-1" ]; then
+  export STAGE="us-east-1"
+  export AWS_DEFAULT_REGION="us-east-1"
   EXPLORER_STAGE=prodblue
 else
   export STAGE=dev
   EXPLORER_STAGE=dev
 fi
 
-REGION="us-east-1"
 APP_NAME="sportnumerics-explorer-cdn"
 STACK_NAME="$APP_NAME-$STAGE"
 TEMPLATE_FILE="cloudformation.yml"
 
-aws configure set region $REGION
+aws configure set region $AWS_DEFAULT_REGION
 
-aws cloudformation deploy --stack-name $STACK_NAME --parameter-overrides "StageParameter=us-east-1" "ExplorerStageDeployment=$EXPLORER_STAGE" --template-file $TEMPLATE_FILE || true
+aws cloudformation deploy --stack-name $STACK_NAME --parameter-overrides "StageParameter=$STAGE" "ExplorerStageDeployment=$EXPLORER_STAGE" --template-file $TEMPLATE_FILE || true
 
 CLOUDFRONT_ID=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[0].Outputs[?OutputKey==`CloudfrontArn`].OutputValue' --output text)
 
