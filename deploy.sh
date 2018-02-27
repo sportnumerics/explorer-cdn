@@ -10,10 +10,6 @@ pip install --user awscli
 
 if [ "$LAMBCI_BRANCH" = "master" ]; then
   export STAGE=prod
-  EXPLORER_STAGE=prodgreen
-elif [ "$LAMBCI_BRANCH" = "us-east-1" ]; then
-  export STAGE="us-east-1"
-  export AWS_DEFAULT_REGION="us-east-1"
   EXPLORER_STAGE=prodblue
 else
   export STAGE=dev
