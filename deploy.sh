@@ -22,7 +22,13 @@ TEMPLATE_FILE="cloudformation.yml"
 
 aws configure set region $AWS_DEFAULT_REGION
 
-aws cloudformation deploy --stack-name $STACK_NAME --parameter-overrides "StageParameter=$STAGE" "ExplorerStageDeployment=$EXPLORER_STAGE" --template-file $TEMPLATE_FILE || true
+aws cloudformation deploy \
+  --stack-name $STACK_NAME \
+  --parameter-overrides \
+    "StageParameter=$STAGE" \
+    "ExplorerStageDeployment=$EXPLORER_STAGE" \
+  --template-file $TEMPLATE_FILE \
+  --no-fail-on-empty-changeset
 
 CLOUDFRONT_ID=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[0].Outputs[?OutputKey==`CloudfrontArn`].OutputValue' --output text)
 
