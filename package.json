@@ -1,6 +1,6 @@
 {
   "name": "explorer-cdn",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Tools for working with explorer CDN",
   "main": "index.js",
   "repository": "https://github.com/sportnumerics/explorer-cdn",
