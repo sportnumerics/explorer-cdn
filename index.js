@@ -27,7 +27,7 @@ program
                     console.error(`Active stage under deployment: \x1b[31m${param_stage}\x1b[0m → \x1b[32m${output_stage}\x1b[0m`);
                     process.exit(1);
                 } else {
-                    console.log(stage);
+                    console.log(output_stage);
                 }
             }
         });
