@@ -24,7 +24,7 @@ program
                 const param_stage = _.find(stack.Parameters, { ParameterKey: "ExplorerStageDeployment"}).ParameterValue;
                 const output_stage = _.find(stack.Outputs, { OutputKey: 'ExplorerStageDeployment' }).OutputValue;
                 if (param_stage !== output_stage) {
-                    console.error(`Active stage under deployment: \x1b[31m${param_stage}\x1b[0m → \x1b[32m${output_stage}\x1b[0m`);
+                    console.error(`Active stage under deployment: \x1b[31m${output_stage}\x1b[0m → \x1b[32m${param_stage}\x1b[0m`);
                     process.exit(1);
                 } else {
                     console.log(output_stage);
