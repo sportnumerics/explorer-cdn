@@ -4,5 +4,6 @@
     "master": true,
     "dev": true,
     "us-east-1": true
-  }
+  },
+  "docker": false
 }
