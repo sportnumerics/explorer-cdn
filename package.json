@@ -7,9 +7,9 @@
   "author": "Will James <wjames@thoughtworks.com>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.203.0",
-    "commander": "^2.14.1",
-    "lodash": "^4.17.5"
+    "aws-sdk": "^2.553.0",
+    "commander": "^3.0.2",
+    "lodash": "^4.17.15"
   },
   "bin": "index.js"
 }
