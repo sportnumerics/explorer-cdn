@@ -1,36 +1,32 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Description: Template for sportnumerics explorer cloudfront distribution
 Parameters:
   StageParameter:
     Type: String
     Default: dev
     AllowedValues:
-    - dev
-    - prod
-    - us-east-1
+      - dev
+      - prod
+      - us-east-1
     Description: Stage to deploy
   ExplorerStageDeployment:
     Type: String
     Default: dev
     AllowedValues:
-    - dev
-    - prodblue
-    - prodgreen
+      - dev
+      - prodblue
+      - prodgreen
 Mappings:
   StageMapping:
-    dev:
-      aliases:
-      - dev.sportnumerics.com
-      certificate: arn:aws:acm:us-east-1:265978616089:certificate/8a8d8c31-20b3-49c4-8b58-13b259064cc6
     prod:
       aliases:
-      - sportnumerics.com
-      - www.sportnumerics.com
-      - prod.sportnumerics.com
-      certificate: arn:aws:acm:us-east-1:265978616089:certificate/7140c26c-5b35-4f21-b16d-695bf5a659e6
+        - sportnumerics.com
+        - www.sportnumerics.com
+        - prod.sportnumerics.com
+      certificate: arn:aws:acm:us-east-1:265978616089:certificate/02636181-f1d6-4cf9-8fe6-c99976b2b78a
 Conditions:
   ProdCondition:
-      Fn::Equals:
+    Fn::Equals:
       - Ref: StageParameter
       - prod
 Resources:
@@ -40,13 +36,13 @@ Resources:
       DistributionConfig:
         Aliases:
           Fn::FindInMap:
-          - StageMapping
-          - Ref: StageParameter
-          - aliases
+            - StageMapping
+            - Ref: StageParameter
+            - aliases
         CustomErrorResponses:
-        - ErrorCode: 404
-          ResponseCode: 200
-          ResponsePagePath: "/index.html"
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: "/index.html"
         DefaultCacheBehavior:
           ForwardedValues:
             QueryString: false
@@ -56,16 +52,16 @@ Resources:
         DefaultRootObject: index.html
         Enabled: true
         Origins:
-        - DomainName:
-            Fn::Join:
-            - "."
-            - - Fn::Join:
-                - "-"
-                - - sportnumerics-explorer
-                  - Ref: ExplorerStageDeployment
-              - s3.amazonaws.com
-          Id: DefaultOrigin
-          S3OriginConfig: {}
+          - DomainName:
+              Fn::Join:
+                - "."
+                - - Fn::Join:
+                      - "-"
+                      - - sportnumerics-explorer
+                        - Ref: ExplorerStageDeployment
+                  - s3.amazonaws.com
+            Id: DefaultOrigin
+            S3OriginConfig: {}
         PriceClass: PriceClass_All
         ViewerCertificate:
           AcmCertificateArn:
@@ -86,7 +82,7 @@ Resources:
       HostedZoneName: sportnumerics.com.
       Name:
         Fn::Join:
-          - '.'
+          - "."
           - - Ref: StageParameter
             - sportnumerics.com
       Type: A
