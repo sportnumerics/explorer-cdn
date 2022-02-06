@@ -6,7 +6,7 @@ pip install --user awscli
 
 if [ "$LAMBCI_BRANCH" = "master" ]; then
   export STAGE=prod
-  EXPLORER_STAGE=prodgreen
+  EXPLORER_STAGE=prodblue
 else
   export STAGE=dev
   EXPLORER_STAGE=dev
