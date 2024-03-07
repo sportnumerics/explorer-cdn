@@ -72,6 +72,7 @@ Resources:
           SslSupportMethod: sni-only
   PrimaryDomain:
     Type: AWS::Route53::RecordSet
+    DeletionPolicy: Retain
     Properties:
       AliasTarget:
         DNSName:
@@ -89,6 +90,7 @@ Resources:
   TopLevelDomain:
     Type: AWS::Route53::RecordSet
     Condition: ProdCondition
+    DeletionPolicy: Retain
     Properties:
       AliasTarget:
         DNSName:
@@ -105,6 +107,7 @@ Resources:
   WWWDomain:
     Type: AWS::Route53::RecordSet
     Condition: ProdCondition
+    DeletionPolicy: Retain
     Properties:
       AliasTarget:
         DNSName:
